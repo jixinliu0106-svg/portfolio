@@ -164,11 +164,11 @@ export default function Home() {
 
   return (
     <main>
-      <section ref={heroRef} className="hero" onClick={() => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })}>
+      <section ref={heroRef} className="hero">
         <div className="cover-image" />
         <HeroRipple />
         <div className="cover-overlay" />
-        <div className="hero-top"><span>RL / 001</span><span>个人作品集<br />2025 — 2026</span><span className="align-right">向下浏览 <b>↘</b></span></div>
+        <div className="hero-top"><span>RL / 001</span><span>个人作品集<br />2025 — 2026</span><button className="align-right hero-scroll" onClick={() => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })}>向下浏览 <b>↘</b></button></div>
         <div className="hero-content"><p className="eyebrow">视觉经理 / Visual Director</p><p className="hero-description">以品牌负责人和创意总监的视角，<br />建立面向海外市场的视觉系统、<br />内容策略与 AI 创意生产流程。</p></div>
         <div className="hero-bottom"><span>跨境电商视觉 · 品牌设计 · AI 创意</span><span className="align-right"><b className="status-dot" /> 接受合作项目</span></div>
       </section>
@@ -345,7 +345,7 @@ export default function Home() {
                     {partnershipVideos.length > 0 ? (
                       <div className="partnership-video-grid">
                         {partnershipVideos.map((src, index) => (
-                          <video key={src} src={src} aria-label={`社媒 AI 视频案例 ${index + 1}`} playsInline controls preload="metadata" />
+                          <video key={src} src={src} aria-label={`社媒 AI 视频案例 ${index + 1}`} playsInline controls muted preload="metadata" />
                         ))}
                       </div>
                     ) : (
