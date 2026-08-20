@@ -82,6 +82,32 @@ const camelEuropeSocialImages = Array.from(
   (_, index) => `/projects/camel-europe/social/${String(index + 1).padStart(2, "0")}.jpg`,
 );
 
+const camelMarketingPlanImages = [
+  "/projects/camel-marketing-plan/1.jpg",
+  "/projects/camel-marketing-plan/2.jpg",
+  "/projects/camel-marketing-plan/3.jpg",
+  "/projects/camel-marketing-plan/4-1.jpg",
+  "/projects/camel-marketing-plan/4-2.jpg",
+  "/projects/camel-marketing-plan/4-3.jpg",
+  "/projects/camel-marketing-plan/4-4.jpg",
+  "/projects/camel-marketing-plan/4.jpg",
+  "/projects/camel-marketing-plan/5.jpg",
+  "/projects/camel-marketing-plan/6.jpg",
+  "/projects/camel-marketing-plan/7.jpg",
+  "/projects/camel-marketing-plan/8.jpg",
+  "/projects/camel-marketing-plan/9.jpg",
+  "/projects/camel-marketing-plan/10.jpg",
+  "/projects/camel-marketing-plan/11.jpg",
+  "/projects/camel-marketing-plan/12.jpg",
+  "/projects/camel-marketing-plan/13.jpg",
+  "/projects/camel-marketing-plan/14.jpg",
+  "/projects/camel-marketing-plan/15.jpg",
+  "/projects/camel-marketing-plan/16.jpg",
+  "/projects/camel-marketing-plan/17.jpg",
+  "/projects/camel-marketing-plan/18.jpg",
+  "/projects/camel-marketing-plan/19.jpg",
+];
+
 const projectWindows = [
   { title: "Camel Crown / 东南亚品牌画册", desc: "品牌画册与guidelines", cover: "/projects/camel-crown/pages/1.jpg", pages: camelPages },
   { title: "主推产品 / Carbon 5K", desc: "listing视觉", cover: "/projects/carbon-5k/listing-02.jpg", pages: [] },
@@ -92,10 +118,10 @@ const projectWindows = [
 ];
 
 const placeholderWindows = Array.from({ length: 6 }, (_, index) => ({
-  title: index === 0 ? "CAMEL" : index === 1 ? "CAMEL / Guidelines" : index === 2 ? "CAMEL / 独立站" : index === 3 ? "主推产品 / AMZ主推品案例" : index === 4 ? "社媒内容 / SOCIAL" : `案例 ${String(index + 1).padStart(2, "0")}`,
-  listingTitle: index === 0 ? "CAMEL / 欧美品牌画册" : index === 1 ? "CAMEL / Guidelines" : index === 2 ? "CAMEL / 独立站" : index === 3 ? "主推产品 / AMZ主推品案例" : index === 4 ? "社媒内容 / SOCIAL" : `案例 ${String(index + 1).padStart(2, "0")}`,
-  desc: index === 0 ? "CAMEL CROWN 品牌历史与技术故事" : index === 1 ? "跨境电商guidelines" : index === 2 ? "CAMEL独立站视觉策划、设计" : index === 3 ? "AMZ listing案例" : index === 4 ? "社媒内容视觉策划与设计" : "项目内容待更新",
-  cover: index === 0 ? "/projects/camel-europe/cover.jpg" : index === 1 ? "/projects/camel-europe/guidelines/01.png" : index === 2 ? "/projects/camel-europe/standalone-site/cover.jpg" : index === 3 ? "/projects/camel-europe/amazon-featured/cover.jpg" : index === 4 ? "/projects/camel-europe/social/cover.jpg" : null,
+  title: index === 0 ? "CAMEL" : index === 1 ? "CAMEL / Guidelines" : index === 2 ? "CAMEL / 独立站" : index === 3 ? "主推产品 / AMZ主推品案例" : index === 4 ? "社媒内容 / SOCIAL" : "CAMEL / 2026跨境营销规划",
+  listingTitle: index === 0 ? "CAMEL / 欧美品牌画册" : index === 1 ? "CAMEL / Guidelines" : index === 2 ? "CAMEL / 独立站" : index === 3 ? "主推产品 / AMZ主推品案例" : index === 4 ? "社媒内容 / SOCIAL" : "CAMEL / 26年营销规划",
+  desc: index === 0 ? "CAMEL CROWN 品牌历史与技术故事" : index === 1 ? "跨境电商guidelines" : index === 2 ? "CAMEL独立站视觉策划、设计" : index === 3 ? "AMZ listing案例" : index === 4 ? "社媒内容视觉策划与设计" : "2026跨境营销规划、内容策略与预算方案",
+  cover: index === 0 ? "/projects/camel-europe/cover.jpg" : index === 1 ? "/projects/camel-europe/guidelines/01.png" : index === 2 ? "/projects/camel-europe/standalone-site/cover.jpg" : index === 3 ? "/projects/camel-europe/amazon-featured/cover.jpg" : index === 4 ? "/projects/camel-europe/social/cover.jpg" : "/projects/camel-marketing-plan/1.jpg",
 }));
 
 export default function Home() {
@@ -277,6 +303,15 @@ export default function Home() {
                           alt={`CAMEL 欧美社媒视觉 ${String(index + 1).padStart(2, "0")}`}
                           loading={index < 6 ? "eager" : "lazy"}
                         />
+                      ))}
+                    </div>
+                  </>
+                ) : activeTopProject === 1 && activeWindow === 5 ? (
+                  <>
+                    <p className="modal-intro">围绕“拓展品牌力 × 聚焦核心品类 × 丰富渠道资源”三条增长主线，完成 CAMEL 欧美市场的品牌定位、内容视觉、社媒矩阵、季度上市节奏与预算规划。</p>
+                    <div className="marketing-plan-pages">
+                      {camelMarketingPlanImages.map((src, index) => (
+                        <img key={src} src={src} alt={`CAMEL 2026 跨境营销规划 ${index + 1}`} loading={index < 2 ? "eager" : "lazy"} />
                       ))}
                     </div>
                   </>
