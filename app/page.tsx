@@ -4,12 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import HeroRipple from "./HeroRipple";
 
 const projects = [
-  { title: "项目一", type: "品牌视觉 / Campaign", year: "2026", tone: "light" },
-  { title: "CAMEL - 欧美", type: "品牌画册 / Campaign部分案例展示", year: "2025", tone: "dark" },
-  { title: "项目三", type: "品牌策略 / Art Direction", year: "2025", tone: "soft" },
-  { title: "项目四", type: "内容视觉 / Social Campaign", year: "2024", tone: "red" },
-  { title: "项目五", type: "AI 创意生产 / Visual System", year: "2024", tone: "warm" },
-  { title: "项目六", type: "数字体验 / E-commerce", year: "2024", tone: "grey" },
+  { title: "CAMEL CROWN - 东南亚", type: "品牌画册 / Campaign部分案例展示", year: "2025-至今", tone: "light" },
+  { title: "CAMEL - 欧美", type: "品牌画册 / Campaign部分案例展示", year: "2025-至今", tone: "dark" },
+  { title: "PATPAT - 欧美", type: "品牌电商部分案例展示", year: "2024-2025", tone: "soft" },
+  { title: "Champion - 国内", type: "品牌市场视觉营销", year: "2019-2024", tone: "red" },
 ];
 
 const camelPages = Array.from({ length: 25 }, (_, index) => index + 1);
@@ -108,6 +106,76 @@ const camelMarketingPlanImages = [
   "/projects/camel-marketing-plan/19.jpg",
 ];
 
+const camelNewProjectImages = Array.from(
+  { length: 27 },
+  (_, index) => `/projects/camel-new-project/${String(index + 1).padStart(2, "0")}.jpg`,
+);
+
+const patpatPages = Array.from(
+  { length: 29 },
+  (_, index) => `/projects/patpat-vi/page-${String(index + 1).padStart(2, "0")}.jpg`,
+);
+
+const patpatGuideColumns = [
+  {
+    title: "摄影前期规范手册",
+    pages: Array.from({ length: 23 }, (_, index) => `/projects/patpat-guides/pre/page-${String(index + 1).padStart(2, "0")}.jpg`),
+  },
+  {
+    title: "后期执行手册",
+    pages: Array.from({ length: 49 }, (_, index) => `/projects/patpat-guides/post/page-${String(index + 1).padStart(2, "0")}.jpg`),
+  },
+  {
+    title: "DTC 主图裁切规范",
+    pages: Array.from({ length: 12 }, (_, index) => `/projects/patpat-guides/dtc/page-${String(index + 1).padStart(2, "0")}.jpg`),
+  },
+];
+
+const patpatFootballListingImages = Array.from(
+  { length: 6 },
+  (_, index) => `/projects/patpat-football/listing/${String(index + 1).padStart(2, "0")}.jpg`,
+);
+const patpatFootballApImages = Array.from(
+  { length: 7 },
+  (_, index) => `/projects/patpat-football/ap/${String(index + 1).padStart(2, "0")}.jpg`,
+);
+const patpatSocialImages = Array.from(
+  { length: 6 },
+  (_, index) => `/projects/patpat-social/${String(index + 1).padStart(2, "0")}.jpg`,
+);
+const patpatSocialVideos = [
+  "/projects/patpat-social/videos/patpat-clothing-01.mp4",
+  "/projects/patpat-social/videos/patpat-clothing-02.mp4",
+  "/projects/patpat-social/videos/patpat-clothing-03.mp4",
+];
+
+const patpatWindows = [
+  {
+    title: "PATPAT / 标志系统",
+    listingTitle: "PATPAT / 标志与组合规范",
+    desc: "Guidelines制定和维护",
+    cover: "/projects/patpat-vi/guidelines-cover.png",
+  },
+  {
+    title: "PATPAT / 色彩系统",
+    listingTitle: "PATPAT / 足球案例",
+    desc: "足球listing案例展示",
+    cover: "/projects/patpat-football/cover.png",
+  },
+  {
+    title: "Dreamcozy / 独立站",
+    listingTitle: "Dreamcozy独立站",
+    desc: "Dreamcozy品牌独立站设计和搭建",
+    cover: "/projects/dreamcozy/cover.jpg",
+  },
+  {
+    title: "PATPAT / 社媒内容",
+    listingTitle: "PATPAT / 社媒内容",
+    desc: "Instagram 社媒内容与节日营销视觉",
+    cover: "/projects/patpat-social/cover.jpg",
+  },
+];
+
 const projectWindows = [
   { title: "Camel Crown / 东南亚品牌画册", desc: "品牌画册与guidelines", cover: "/projects/camel-crown/pages/1.jpg", pages: camelPages },
   { title: "主推产品 / Carbon 5K", desc: "listing视觉", cover: "/projects/carbon-5k/listing-02.jpg", pages: [] },
@@ -117,12 +185,121 @@ const projectWindows = [
   { title: "合作与传播 / Partnership", desc: "社媒 AI 视频案例", cover: "/projects/partnership-cover.jpg", pages: [] },
 ];
 
-const placeholderWindows = Array.from({ length: 6 }, (_, index) => ({
-  title: index === 0 ? "CAMEL" : index === 1 ? "CAMEL / Guidelines" : index === 2 ? "CAMEL / 独立站" : index === 3 ? "主推产品 / AMZ主推品案例" : index === 4 ? "社媒内容 / SOCIAL" : "CAMEL / 2026跨境营销规划",
-  listingTitle: index === 0 ? "CAMEL / 欧美品牌画册" : index === 1 ? "CAMEL / Guidelines" : index === 2 ? "CAMEL / 独立站" : index === 3 ? "主推产品 / AMZ主推品案例" : index === 4 ? "社媒内容 / SOCIAL" : "CAMEL / 26年营销规划",
-  desc: index === 0 ? "CAMEL CROWN 品牌历史与技术故事" : index === 1 ? "跨境电商guidelines" : index === 2 ? "CAMEL独立站视觉策划、设计" : index === 3 ? "AMZ listing案例" : index === 4 ? "社媒内容视觉策划与设计" : "2026跨境营销规划、内容策略与预算方案",
-  cover: index === 0 ? "/projects/camel-europe/cover.jpg" : index === 1 ? "/projects/camel-europe/guidelines/01.png" : index === 2 ? "/projects/camel-europe/standalone-site/cover.jpg" : index === 3 ? "/projects/camel-europe/amazon-featured/cover.jpg" : index === 4 ? "/projects/camel-europe/social/cover.jpg" : "/projects/camel-marketing-plan/1.jpg",
-}));
+const placeholderWindows = [
+  { title: "CAMEL", listingTitle: "CAMEL / 欧美品牌画册", desc: "CAMEL CROWN 品牌历史与技术故事", cover: "/projects/camel-europe/cover.jpg" },
+  { title: "CAMEL / Guidelines", listingTitle: "CAMEL / Guidelines", desc: "跨境电商guidelines", cover: "/projects/camel-europe/guidelines/01.png" },
+  { title: "CAMEL / 独立站", listingTitle: "CAMEL / 独立站", desc: "CAMEL独立站视觉策划、设计", cover: "/projects/camel-europe/standalone-site/cover.jpg" },
+  { title: "CAMEL / 2026跨境营销规划", listingTitle: "CAMEL / 26年营销规划", desc: "2026跨境营销规划、内容策略与预算方案", cover: "/projects/camel-marketing-plan/1.jpg" },
+];
+
+const camelTeamManagementImages: string[] = Array.from({ length: 31 }, (_, index) =>
+  `/projects/camel-team-management/page-${String(index + 1).padStart(2, "0")}.jpg`,
+);
+const camelEuropeWindows = [
+  placeholderWindows[0],
+  placeholderWindows[1],
+  placeholderWindows[2],
+  {
+    title: "CAMEL / 新项目",
+    listingTitle: "CAMEL / 新项目",
+    desc: "欧美市场社媒内容与户外场景视觉",
+    cover: "/projects/camel-new-project/cover.jpg",
+  },
+  placeholderWindows[3],
+  {
+    title: "CAMEL / 团队管理",
+    listingTitle: "CAMEL / 团队管理述职",
+    desc: "团队管理、项目协作与品牌视觉工作复盘",
+    cover: "/projects/camel-team-management/cover.jpg",
+  },
+];
+
+const championBrandBookPages: string[] = Array.from({ length: 39 }, (_, index) =>
+  `/projects/champion/brand-book/page-${String(index + 1).padStart(2, "0")}.jpg`,
+);
+const championCollaborationPages: string[] = Array.from({ length: 25 }, (_, index) =>
+  `/projects/champion/collaborations/page-${String(index + 3).padStart(2, "0")}.jpg`,
+);
+const championProductMarketingPages: string[] = Array.from({ length: 21 }, (_, index) =>
+  `/projects/champion/product-marketing/page-${String(index + 29).padStart(2, "0")}.jpg`,
+);
+const championEcommerceCampaignPages: string[] = Array.from({ length: 9 }, (_, index) =>
+  `/projects/champion/ecommerce-campaigns/page-${String(index + 51).padStart(2, "0")}.jpg`,
+);
+const championPerformanceReviewPages: string[] = [60, 61, 62].map(
+  (page) => `/projects/champion/performance-review/page-${page}.jpg`,
+);
+const championNewProjectVideos = [
+  "/projects/champion/new-project/01-cp-canotwait.mp4",
+  "/projects/champion/new-project/02-cp-mtss.mp4",
+  "/projects/champion/new-project/03-future-dad-shoes.mp4",
+  "/projects/champion/new-project/04-untitled.mp4",
+  "/projects/champion/new-project/05-valve-v3-cg.mp4",
+  "/projects/champion/new-project/06-campus-maillard.mp4",
+  "/projects/champion/new-project/07-christmas.mp4",
+];
+
+type ChampionWindow = {
+  title: string;
+  listingTitle: string;
+  desc: string;
+  cover: string;
+  sectionLabel: string;
+  pages: string[];
+  videos?: string[];
+};
+
+const championWindows: ChampionWindow[] = [
+  {
+    title: "CHAMPION / 品牌手册",
+    listingTitle: "CHAMPION / 品牌手册",
+    desc: "CHAMPION Brand Book 2023：品牌历史、标志系统、色彩、字体与应用规范。",
+    cover: "/projects/champion/brand-book-cover.jpg",
+    sectionLabel: "CHAMPION BRAND BOOK · 2023",
+    pages: championBrandBookPages,
+  },
+  {
+    title: "CHAMPION / 联名项目",
+    listingTitle: "CHAMPION / 联名项目",
+    desc: "品牌联名项目：IP 合作、产品企划、线上传播与线下营销视觉。",
+    cover: "/projects/champion/covers/collaborations.jpg",
+    sectionLabel: "BRAND COLLABORATIONS · SELECTED PROJECTS",
+    pages: championCollaborationPages,
+  },
+  {
+    title: "CHAMPION / 品牌与产品营销",
+    listingTitle: "CHAMPION / 品牌与产品视觉营销案例",
+    desc: "品牌与产品营销项目：季度大片、产品 CG、赠品及线下营销视觉。",
+    cover: "/projects/champion/covers/product-marketing.jpg",
+    sectionLabel: "BRAND & PRODUCT MARKETING · SELECTED PROJECTS",
+    pages: championProductMarketingPages,
+  },
+  {
+    title: "CHAMPION / 新项目",
+    listingTitle: "CHAMPION / 品宣大片案例",
+    desc: "品牌联名、产品 CG 与节点营销视频案例。",
+    cover: "/projects/champion/new-project/cover.jpg",
+    sectionLabel: "NEW PROJECT",
+    pages: [],
+    videos: championNewProjectVideos,
+  },
+  {
+    title: "CHAMPION / 电商节点营销",
+    listingTitle: "CHAMPION / 电商节点营销案例",
+    desc: "电商节点营销项目：平台活动、节日主题与线上 Campaign 视觉。",
+    cover: "/projects/champion/covers/ecommerce-campaigns.jpg",
+    sectionLabel: "E-COMMERCE CAMPAIGNS · SELECTED PROJECTS",
+    pages: championEcommerceCampaignPages,
+  },
+  {
+    title: "CHAMPION / 述职报告",
+    listingTitle: "CHAMPION / 项目总览",
+    desc: "团队管理、项目协作与品牌视觉工作复盘。",
+    cover: "/projects/champion/covers/performance-report.jpg",
+    sectionLabel: "PERFORMANCE REVIEW",
+    pages: championPerformanceReviewPages,
+  },
+];
 
 export default function Home() {
   const heroRef = useRef<HTMLElement>(null);
@@ -130,6 +307,12 @@ export default function Home() {
   const [openProject, setOpenProject] = useState(false);
   const [activeTopProject, setActiveTopProject] = useState<number | null>(null);
   const [activeWindow, setActiveWindow] = useState<number | null>(null);
+  const modalWindows =
+    activeTopProject === 0 ? projectWindows
+    : activeTopProject === 1 ? camelEuropeWindows
+    : activeTopProject === 2 ? patpatWindows
+    : activeTopProject === 3 ? championWindows
+    : placeholderWindows;
 
   const skillDetails = [
     "长期服务于全球领先企业，主导从 0→1 的品牌形象建立及线上线下一体化视觉系统搭建，涵盖品牌视觉、独立站、电商平台及多媒体内容，具备成熟的团队管理与跨职能协作经验。",
@@ -201,18 +384,18 @@ export default function Home() {
 
       <section className="intro"><div className="section-label">关于我 / About</div><div className="intro-copy"><h2>让视觉成为<br /><i>品牌的竞争力。</i></h2><div className="intro-details"><p>我是一名跨境电商品牌视觉经理，专注于品牌视觉、电商体系与商业内容。以国际化审美和清晰的系统方法，帮助品牌建立长期可复用的视觉资产。</p><ol>{skillDetails.map((detail, index) => <li className={openSkill === index ? "is-open" : ""} key={detail}><button onClick={() => setOpenSkill(openSkill === index ? null : index)}><b>0{index + 1}</b><span>{["超 10 年品牌视觉与电商体系搭建经验", "丰富的品牌全案与商业转化成果", "团队管理与 SOP 体系搭建能力", "国际化审美与趋势判断能力"][index]}</span><em>+</em></button><div className="skill-detail">{detail}</div></li>)}</ol></div></div></section>
 
-      <section className="work" id="work"><div className="section-heading"><div className="section-label">精选项目 / Selected Work</div><p>点击项目封面查看完成案例<br />*CAMELCROWN、CAMEL案例图片/视频均是AI生成</p></div><div className="project-grid">{projects.map((project, index) => <article className={`project project-${index + 1}`} key={project.title}><button className={`project-placeholder ${project.tone} ${index < 2 ? "has-image" : ""}`} onClick={() => { if (index < 5) { setActiveTopProject(index); setActiveWindow(null); setOpenProject(true); } }}>{index === 0 ? <img src="/projects/camel-crown/cover.png" alt="Camel Crown 品牌画册封面" /> : index === 1 ? <img src="/projects/camel-europe-cover.jpg" alt="CAMEL 欧美项目封面" /> : <span>PROJECT 0{index + 1}</span>}<span className="placeholder-mark">+</span></button><div className="project-info"><div><h3>{index === 0 ? "Camel Crown - 东南亚" : project.title}</h3><p>{index === 0 ? "品牌画册 / Campaign部分案例展示" : project.type}</p></div><span>{project.year}</span></div></article>)}</div></section>
+      <section className="work" id="work"><div className="section-heading"><div className="section-label">精选项目 / Selected Work</div><p>点击项目封面查看完成案例<br />*CAMELCROWN、CAMEL案例图片/视频均是AI生成</p></div><div className="project-grid">{projects.map((project, index) => <article className={`project project-${index + 1}`} key={project.title}><button className={`project-placeholder ${project.tone} ${index < 4 ? "has-image" : ""}`} onClick={() => { if (index < 5) { setActiveTopProject(index); setActiveWindow(null); setOpenProject(true); } }}>{index === 0 ? <img src="/projects/camel-crown/cover.png" alt="Camel Crown 品牌画册封面" /> : index === 1 ? <img src="/projects/camel-europe-cover.jpg" alt="CAMEL 欧美项目封面" /> : index === 2 ? <img src="/projects/patpat-vi/cover.jpg" alt="PATPAT 品牌视觉识别系统封面" /> : index === 3 ? <img src="/projects/champion/cover.jpg" alt="Champion 品牌手册封面" /> : <span>PROJECT 0{index + 1}</span>}<span className="placeholder-mark">+</span></button><div className="project-info"><div><h3>{index === 0 ? "Camel Crown - 东南亚" : project.title}</h3><p>{index === 0 ? "品牌画册 / Campaign部分案例展示" : project.type}</p></div><span>{project.year}</span></div></article>)}</div></section>
 
       {openProject && (
         <div className="project-modal" role="dialog" aria-modal="true" aria-label={`${activeTopProject === 0 ? "Camel Crown - 东南亚" : activeTopProject !== null ? projects[activeTopProject].title : "项目"}预览`}>
           <div className="project-modal-inner">
             <div className="modal-top">
-              <span>{activeWindow === null ? (activeTopProject === 0 ? "Camel Crown / Brand Book 2026" : `${activeTopProject !== null ? projects[activeTopProject].title : "项目"} / CASE STUDIES`) : (activeTopProject === 0 ? `${projectWindows[activeWindow].title} / CAMEL CROWN` : `${placeholderWindows[activeWindow].title} / ${activeTopProject !== null ? projects[activeTopProject].title : "项目"}`)}</span>
+              <span>{activeWindow === null ? (activeTopProject === 0 ? "Camel Crown / Brand Book 2026" : `${activeTopProject !== null ? projects[activeTopProject].title : "项目"} / CASE STUDIES`) : (activeTopProject === 0 ? `${projectWindows[activeWindow].title} / CAMEL CROWN` : `${modalWindows[activeWindow].title} / ${activeTopProject !== null ? projects[activeTopProject].title : "项目"}`)}</span>
               <button onClick={() => { setOpenProject(false); setActiveWindow(null); setActiveTopProject(null); }}>关闭 ×</button>
             </div>
             {activeWindow === null ? (
               <>
-                <p className="modal-intro">{activeTopProject === 0 ? "东南亚运动生活方式品牌视觉项目。选择一个作品窗口进入完整内容预览。" : activeTopProject === 1 ? "CAMEL欧美市场品牌定位：一个以性能为基础、以耐用为核心的户外品牌，专注真实环境下的防护力、功能性与性价比，服务更广泛的户外人群。" : "选择一个项目进入三级作品展示。"}</p>
+                <p className="modal-intro">{activeTopProject === 0 ? "东南亚运动生活方式品牌视觉项目。选择一个作品窗口进入完整内容预览。" : activeTopProject === 1 ? "CAMEL欧美市场品牌定位：一个以性能为基础、以耐用为核心的户外品牌，专注真实环境下的防护力、功能性与性价比，服务更广泛的户外人群。" : activeTopProject === 2 ? "PATPAT 欧美品牌电商视觉案例，覆盖品牌识别、商品展示与营销页面。" : activeTopProject === 3 ? "CHAMPION 国内品牌市场视觉案例，覆盖品牌手册、联名企划、品牌与产品营销、电商节点 Campaign 及团队项目复盘。" : "选择一个项目进入三级作品展示。"}</p>
                 <div className="project-windows">
                   {activeTopProject === 0 ? projectWindows.map((item, index) => (
                       <button className="project-window" key={item.title} onClick={() => setActiveWindow(index)}>
@@ -223,9 +406,9 @@ export default function Home() {
                           <b>↗</b>
                         </div>
                       </button>
-                    )) : placeholderWindows.map((item, index) => (
+                    )) : modalWindows.map((item, index) => (
                       <button className="project-window placeholder-project-window" key={item.title} onClick={() => setActiveWindow(index)}>
-                        {activeTopProject === 1 && item.cover ? (
+                        {(activeTopProject === 1 || activeTopProject === 2 || activeTopProject === 3) && item.cover ? (
                           <img src={item.cover} alt={`${item.listingTitle} 封面`} />
                         ) : (
                           <div className={`project-window-placeholder project-tone-${activeTopProject ?? 0}`}><span>PROJECT {String(index + 1).padStart(2, "0")}</span></div>
@@ -242,7 +425,67 @@ export default function Home() {
             ) : (
               <>
                 <button className="modal-back" onClick={() => setActiveWindow(null)}>← 返回作品目录</button>
-                {activeTopProject === 1 && activeWindow === 0 ? (
+                {activeTopProject === 2 && activeWindow === 2 ? (
+                  <>
+                    <p className="modal-intro">Dreamcozy 婴童竹纤维服饰独立站设计与搭建，围绕柔和自然的品牌调性，完成首页视觉、产品分类、材质卖点、用户评价与内容营销模块，建立从品牌认知到购物转化的完整体验。<br /><a href="https://dreamcozystore.com/" target="_blank" rel="noreferrer">访问 Dreamcozy 独立站 ↗</a><br /><small>网站访问需点击右上角，输入密码：dreamcozy</small></p>
+                    <div className="dreamcozy-site-pages">
+                      <img src="/projects/dreamcozy/site-home.jpg" alt="Dreamcozy 独立站首页与页面设计" loading="eager" />
+                    </div>
+                  </>
+                ) : activeTopProject === 2 && activeWindow === 1 ? (
+                  <>
+                    <p className="modal-intro">PATPAT 足球鞋 Listing 与 A+ 页面视觉案例，围绕速度、抓地、稳定与多运动场景，展示从橱窗图到详情页的完整电商内容体系。</p>
+                    <div className="patpat-football-listing-grid">
+                      {patpatFootballListingImages.map((src, index) => (
+                        <img key={src} src={src} alt={`PATPAT 足球鞋 Listing 案例 ${index + 1}`} loading={index < 2 ? "eager" : "lazy"} />
+                      ))}
+                    </div>
+                    <div className="patpat-football-ap-pages">
+                      {patpatFootballApImages.map((src, index) => (
+                        <img key={src} src={src} alt={`PATPAT 足球鞋 A+ 页面案例 ${index + 1}`} loading={index < 2 ? "eager" : "lazy"} />
+                      ))}
+                    </div>
+                  </>
+                ) : activeTopProject === 2 && activeWindow === 3 ? (
+                  <>
+                    <p className="modal-intro">PATPAT Instagram 社媒内容案例，覆盖日常产品展示、亲子场景与节日营销视觉。</p>
+                    <div className="patpat-social-grid">
+                      {patpatSocialImages.map((src, index) => (
+                        <img key={src} src={src} alt={`PATPAT 社媒视觉案例 ${index + 1}`} loading={index < 3 ? "eager" : "lazy"} />
+                      ))}
+                    </div>
+                    <div className="patpat-social-video-grid">
+                      {patpatSocialVideos.map((src, index) => (
+                        <video key={src} src={src} aria-label={`PATPAT 社媒视频案例 ${index + 1}`} playsInline controls muted preload="metadata" />
+                      ))}
+                    </div>
+                  </>
+                ) : activeTopProject === 2 ? (
+                  <>
+                    <p className="modal-intro">PATPAT 摄影、后期与 DTC 主图执行规范，按三份手册并列展示，便于对照查看品牌视觉生产标准。</p>
+                    <div className="patpat-guide-columns">
+                      {patpatGuideColumns.map((column) => (
+                        <section className="patpat-guide-column" key={column.title}>
+                          <h3>{column.title}</h3>
+                          <div className="patpat-guide-pages">
+                            {column.pages.map((src, index) => (
+                              <img key={src} src={src} alt={`${column.title} 第 ${index + 1} 页`} loading={index < 2 ? "eager" : "lazy"} />
+                            ))}
+                          </div>
+                        </section>
+                      ))}
+                    </div>
+                  </>
+                ) : activeTopProject === 1 && activeWindow === 3 ? (
+                  <>
+                    <p className="modal-intro">CAMEL 欧美市场社媒内容，覆盖户外生活方式、产品功能表达与场景化传播视觉。</p>
+                    <div className="camel-new-project-grid">
+                      {camelNewProjectImages.map((src, index) => (
+                        <img key={src} src={src} alt={`CAMEL 欧美社媒案例 ${index + 1}`} loading={index < 6 ? "eager" : "lazy"} />
+                      ))}
+                    </div>
+                  </>
+                ) : activeTopProject === 1 && activeWindow === 0 ? (
                   <div className="brand-story-pages">
                     {[...camelEuropeBrandStoryImages, ...camelEuropeTopeakTechImages].map((src, index) => (
                       <img key={src} src={src} alt={`CAMEL 欧美案例 ${index + 1}`} loading={index < 2 ? "eager" : "lazy"} />
@@ -266,47 +509,7 @@ export default function Home() {
                       ))}
                     </div>
                   </>
-                ) : activeTopProject === 1 && activeWindow === 3 ? (
-                  <>
-                    <p className="modal-intro">
-                      <a href="https://www.amazon.com/dp/B07FTBNKWS" target="_blank" rel="noreferrer">
-                        CAMEL CROWN Amazon 主推产品 Listing 与 A+ 页面视觉策划，以女性三合一户外夹克为核心，系统呈现保暖防风、防水、耐磨、多场景穿着、产品细节与尺码信息，兼顾技术卖点传达、品牌氛围与电商转化。 ↗
-                      </a>
-                    </p>
-                    <div className="amazon-listing-grid">
-                      {camelEuropeAmazonListingImages.map((src, index) => (
-                        <img key={src} src={src} alt={`CAMEL CROWN Amazon Listing ${index + 1}`} loading={index < 4 ? "eager" : "lazy"} />
-                      ))}
-                    </div>
-                    <div className="amazon-detail-pages">
-                      {camelEuropeAmazonDetailImages.map((src, index) => (
-                        <img key={src} src={src} alt={`CAMEL CROWN Amazon A+ ${index + 1}`} loading="lazy" />
-                      ))}
-                    </div>
-                  </>
                 ) : activeTopProject === 1 && activeWindow === 4 ? (
-                  <>
-                    <p className="modal-intro">
-                      <a
-                        href="https://www.instagram.com/cameloutdoorus/"
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        CAMEL 欧美社媒内容视觉策划与设计，围绕新品推广、技术面料、户外场景、互动活动与生活方式内容，构建兼顾产品卖点、品牌调性与用户参与的社交传播体系。查看 Instagram ↗
-                      </a>
-                    </p>
-                    <div className="social-grid">
-                      {camelEuropeSocialImages.map((src, index) => (
-                        <img
-                          key={src}
-                          src={src}
-                          alt={`CAMEL 欧美社媒视觉 ${String(index + 1).padStart(2, "0")}`}
-                          loading={index < 6 ? "eager" : "lazy"}
-                        />
-                      ))}
-                    </div>
-                  </>
-                ) : activeTopProject === 1 && activeWindow === 5 ? (
                   <>
                     <p className="modal-intro">围绕“拓展品牌力 × 聚焦核心品类 × 丰富渠道资源”三条增长主线，完成 CAMEL 欧美市场的品牌定位、内容视觉、社媒矩阵、季度上市节奏与预算规划。</p>
                     <div className="marketing-plan-pages">
@@ -315,11 +518,53 @@ export default function Home() {
                       ))}
                     </div>
                   </>
+                ) : activeTopProject === 1 && activeWindow === 5 ? (
+                  <>
+                    <p className="modal-intro">围绕团队管理、项目协作与业务支持，梳理年度工作成果、团队机制与品牌视觉团队的协同方式。</p>
+                    <div className="camel-team-pages">
+                      {camelTeamManagementImages.map((src, index) => (
+                        <img key={src} src={src} alt={`CAMEL 团队管理述职第 ${index + 1} 页`} loading={index < 2 ? "eager" : "lazy"} />
+                      ))}
+                    </div>
+                  </>
+                ) : activeTopProject === 3 && activeWindow === 3 ? (
+  <>
+    <p className="modal-intro">CHAMPION 品牌联名、产品 CG 与节日节点营销视频案例。</p>
+    <div className="champion-new-project-videos">
+      {championNewProjectVideos.map((src, index) => (
+        <video key={src} src={src} aria-label={`CHAMPION 新项目视频案例 ${index + 1}`} playsInline controls muted preload="metadata" />
+      ))}
+    </div>
+  </>
+                ) : activeTopProject === 3 ? (
+  <>
+    <p className="modal-intro">{championWindows[activeWindow ?? 0].desc}</p>
+    {championWindows[activeWindow ?? 0].pages.length > 0 ? (
+      <div className="champion-file-document">
+        <h3>{championWindows[activeWindow ?? 0].sectionLabel}</h3>
+        <div className="champion-pdf-pages">
+          {championWindows[activeWindow ?? 0].pages.map((src, index) => (
+            <img
+              key={src}
+              src={src}
+              alt={`${championWindows[activeWindow ?? 0].title} 第 ${index + 1} 页`}
+              loading={index < 2 ? "eager" : "lazy"}
+            />
+          ))}
+        </div>
+      </div>
+    ) : (
+      <div className="tertiary-placeholder">
+        <span>{championWindows[activeWindow ?? 0].title}</span>
+        <small>项目图片与内容将在后续更新</small>
+      </div>
+    )}
+  </>
                 ) : activeTopProject !== 0 ? (
                   <>
                     <p className="modal-intro">案例内容待更新</p>
                     <div className="tertiary-placeholder">
-                      <span>{placeholderWindows[activeWindow].title}</span>
+                      <span>{modalWindows[activeWindow].title}</span>
                       <small>作品图片与内容将在后续更新</small>
                     </div>
                   </>
