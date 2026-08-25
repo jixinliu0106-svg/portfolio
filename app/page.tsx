@@ -393,6 +393,14 @@ export default function Home() {
               <span>{activeWindow === null ? (activeTopProject === 0 ? "Camel Crown / Brand Book 2026" : `${activeTopProject !== null ? projects[activeTopProject].title : "项目"} / CASE STUDIES`) : (activeTopProject === 0 ? `${projectWindows[activeWindow].title} / CAMEL CROWN` : `${modalWindows[activeWindow].title} / ${activeTopProject !== null ? projects[activeTopProject].title : "项目"}`)}</span>
               <button onClick={() => { setOpenProject(false); setActiveWindow(null); setActiveTopProject(null); }}>关闭 ×</button>
             </div>
+            <button
+              className="modal-back-to-top"
+              type="button"
+              onClick={() => document.querySelector<HTMLElement>(".project-modal")?.scrollTo({ top: 0, behavior: "smooth" })}
+              aria-label="回到当前项目页面顶部"
+            >
+              ↑ 回到顶部
+            </button>
             {activeWindow === null ? (
               <>
                 <p className="modal-intro">{activeTopProject === 0 ? "东南亚运动生活方式品牌视觉项目。选择一个作品窗口进入完整内容预览。" : activeTopProject === 1 ? "CAMEL欧美市场品牌定位：一个以性能为基础、以耐用为核心的户外品牌，专注真实环境下的防护力、功能性与性价比，服务更广泛的户外人群。" : activeTopProject === 2 ? "PATPAT 欧美品牌电商视觉案例，覆盖品牌识别、商品展示与营销页面。" : activeTopProject === 3 ? "CHAMPION 国内品牌市场视觉案例，覆盖品牌手册、联名企划、品牌与产品营销、电商节点 Campaign 及团队项目复盘。" : "选择一个项目进入三级作品展示。"}</p>
