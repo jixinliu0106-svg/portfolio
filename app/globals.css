@@ -149,6 +149,8 @@ button,a { color:inherit; }
 .camel-team-pages img { display:block; width:100%; height:auto; margin:0; }
 .camel-new-project-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:5px; width:min(1440px,100%); margin:30px auto 0; align-items:start; }
 .camel-new-project-grid img { display:block; width:100%; height:auto; }
+.camel-ai-video-cases { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; width:min(1180px,100%); margin:44px auto 0; align-items:start; }
+.camel-ai-video-cases video { display:block; width:100%; height:auto; background:#111; }
 .champion-guideline-columns { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; width:min(1440px,100%); margin:30px auto 0; align-items:start; }
 .champion-guideline-column { min-width:0; padding:0 14px; }
 .champion-guideline-column + .champion-guideline-column { border-left:1px solid #3a3a3a; }

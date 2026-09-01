@@ -148,6 +148,10 @@ const patpatSocialVideos = [
   "/projects/patpat-social/videos/patpat-clothing-02.mp4",
   "/projects/patpat-social/videos/patpat-clothing-03.mp4",
 ];
+const camelAiVideoCases = [
+  "/projects/camel-ai-video/ugc-video-01.mp4",
+  "/projects/camel-ai-video/ugc-video-02.mp4",
+];
 
 const patpatWindows = [
   {
@@ -204,6 +208,12 @@ const camelEuropeWindows = [
     listingTitle: "CAMEL / 新项目",
     desc: "欧美市场社媒内容与户外场景视觉",
     cover: "/projects/camel-new-project/cover.jpg",
+  },
+  {
+    title: "CAMEL / 欧美AI视频案例",
+    listingTitle: "CAMEL / 欧美AI视频案例",
+    desc: "欧美市场 AI 视频与动态内容案例",
+    cover: "/projects/camel-ai-video/cover.jpg",
   },
   placeholderWindows[3],
   {
@@ -519,6 +529,15 @@ export default function Home() {
                   </>
                 ) : activeTopProject === 1 && activeWindow === 4 ? (
                   <>
+                    <p className="modal-intro">CAMEL 欧美市场 AI 视频案例，聚焦 UGC 叙事、真实户外场景与产品体验表达。</p>
+                    <div className="camel-ai-video-cases">
+                      {camelAiVideoCases.map((src, index) => (
+                        <video key={src} src={src} aria-label={`CAMEL 欧美 AI 视频案例 ${index + 1}`} playsInline controls muted preload="metadata" />
+                      ))}
+                    </div>
+                  </>
+                ) : activeTopProject === 1 && activeWindow === 5 ? (
+                  <>
                     <p className="modal-intro">围绕“拓展品牌力 × 聚焦核心品类 × 丰富渠道资源”三条增长主线，完成 CAMEL 欧美市场的品牌定位、内容视觉、社媒矩阵、季度上市节奏与预算规划。</p>
                     <div className="marketing-plan-pages">
                       {camelMarketingPlanImages.map((src, index) => (
@@ -526,7 +545,7 @@ export default function Home() {
                       ))}
                     </div>
                   </>
-                ) : activeTopProject === 1 && activeWindow === 5 ? (
+                ) : activeTopProject === 1 && activeWindow === 6 ? (
                   <>
                     <p className="modal-intro">围绕团队管理、项目协作与业务支持，梳理年度工作成果、团队机制与品牌视觉团队的协同方式。</p>
                     <div className="camel-team-pages">
