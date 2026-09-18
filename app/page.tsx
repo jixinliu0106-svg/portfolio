@@ -199,13 +199,18 @@ const placeholderWindows = [
 const camelTeamManagementImages: string[] = Array.from({ length: 31 }, (_, index) =>
   `/projects/camel-team-management/page-${String(index + 1).padStart(2, "0")}.jpg`,
 );
+const camelBrandUpgradeDocuments = [
+  { title: "跨境 VIS 概念 / V2.1", folder: "vis", pageCount: 32 },
+  { title: "跨境品牌画册概念 / V2.0", folder: "brand-book", pageCount: 11 },
+];
+
 const camelEuropeWindows = [
   placeholderWindows[0],
   placeholderWindows[1],
   placeholderWindows[2],
   {
-    title: "CAMEL / 新项目",
-    listingTitle: "CAMEL / 新项目",
+    title: "CAMEL / 社媒内容",
+    listingTitle: "CAMEL / 社媒内容",
     desc: "欧美市场社媒内容与户外场景视觉",
     cover: "/projects/camel-new-project/cover.jpg",
   },
@@ -214,6 +219,12 @@ const camelEuropeWindows = [
     listingTitle: "CAMEL / 欧美AI视频案例",
     desc: "欧美市场 AI 视频与动态内容案例",
     cover: "/projects/camel-ai-video/cover.jpg",
+  },
+  {
+    title: "CAMEL / 视觉品牌升级",
+    listingTitle: "CAMEL / 视觉品牌升级",
+    desc: "CAMEL 欧美市场视觉品牌升级案例",
+    cover: "/projects/camel-brand-upgrade/cover-v2.jpg",
   },
   placeholderWindows[3],
   {
@@ -317,6 +328,11 @@ export default function Home() {
   const [openProject, setOpenProject] = useState(false);
   const [activeTopProject, setActiveTopProject] = useState<number | null>(null);
   const [activeWindow, setActiveWindow] = useState<number | null>(null);
+  useEffect(() => {
+    if (activeTopProject === 1 && activeWindow === 5) {
+      document.querySelector<HTMLElement>(".project-modal")?.scrollTo({ top: 0, behavior: "instant" });
+    }
+  }, [activeTopProject, activeWindow]);
   const modalWindows =
     activeTopProject === 0 ? projectWindows
     : activeTopProject === 1 ? camelEuropeWindows
@@ -427,7 +443,7 @@ export default function Home() {
                     )) : modalWindows.map((item, index) => (
                       <button className="project-window placeholder-project-window" key={item.title} onClick={() => setActiveWindow(index)}>
                         {(activeTopProject === 1 || activeTopProject === 2 || activeTopProject === 3) && item.cover ? (
-                          <img src={item.cover} alt={`${item.listingTitle} 封面`} />
+                          <img className={activeTopProject === 1 && index === 5 ? "brand-upgrade-cover" : undefined} src={item.cover} alt={`${item.listingTitle} 封面`} />
                         ) : (
                           <div className={`project-window-placeholder project-tone-${activeTopProject ?? 0}`}><span>PROJECT {String(index + 1).padStart(2, "0")}</span></div>
                         )}
@@ -538,6 +554,27 @@ export default function Home() {
                   </>
                 ) : activeTopProject === 1 && activeWindow === 5 ? (
                   <>
+                    <div className="brand-upgrade-intro">
+                      <h2>品牌视觉升级 1.0 / 概念方案</h2>
+                      <p>面向欧美户外市场，本次品牌视觉升级 1.0 概念方案以“GO FORWARD WITH CAMEL”为核心表达，围绕可靠、功能与耐用的品牌价值，重新梳理标志、字体、色彩及辅助图形系统，并延展至包装、吊牌、产品功能图标、营销海报与网站应用。品牌画册同步整合品牌故事、使命愿景与价值主张，以真实户外场景和清晰的功能表达，建立统一、可识别的跨境品牌形象，为后续产品传播与多渠道内容制作提供视觉基础。以下展示 VIS 与品牌画册的概念探索，非最终落地版本。</p>
+                    </div>
+                    <div className="brand-upgrade-columns">
+                      {camelBrandUpgradeDocuments.map((document) => (
+                        <section className="brand-upgrade-document" key={document.folder}>
+                          <h3>{document.title}<span>{document.pageCount} 页</span></h3>
+                          <div className="brand-upgrade-pages">
+                            {Array.from({ length: document.pageCount }, (_, index) => (
+                              <a key={index} href={`/projects/camel-brand-upgrade/${document.folder}/page-${String(index + 1).padStart(2, "0")}.jpg`} target="_blank" rel="noreferrer" aria-label={`${document.title} 第 ${index + 1} 页，查看大图`}>
+                                <img src={`/projects/camel-brand-upgrade/${document.folder}/page-${String(index + 1).padStart(2, "0")}.jpg`} alt={`${document.title} 第 ${index + 1} 页`} loading={index < 2 ? "eager" : "lazy"} width={1800} height={1013} />
+                              </a>
+                            ))}
+                          </div>
+                        </section>
+                      ))}
+                    </div>
+                  </>
+                ) : activeTopProject === 1 && activeWindow === 6 ? (
+                  <>
                     <p className="modal-intro">围绕“拓展品牌力 × 聚焦核心品类 × 丰富渠道资源”三条增长主线，完成 CAMEL 欧美市场的品牌定位、内容视觉、社媒矩阵、季度上市节奏与预算规划。</p>
                     <div className="marketing-plan-pages">
                       {camelMarketingPlanImages.map((src, index) => (
@@ -545,7 +582,7 @@ export default function Home() {
                       ))}
                     </div>
                   </>
-                ) : activeTopProject === 1 && activeWindow === 6 ? (
+                ) : activeTopProject === 1 && activeWindow === 7 ? (
                   <>
                     <p className="modal-intro">围绕团队管理、项目协作与业务支持，梳理年度工作成果、团队机制与品牌视觉团队的协同方式。</p>
                     <div className="camel-team-pages">

@@ -80,6 +80,8 @@ button,a { color:inherit; }
 .project-window { display:block; border:0; padding:0; background:#202020; color:var(--white); text-align:left; cursor:pointer; overflow:hidden; }
 .project-window img { display:block; width:100%; aspect-ratio:1.45; object-fit:cover; filter:saturate(.82); transition:transform .6s ease,filter .6s ease; }
 .project-window:hover img { transform:scale(1.03); filter:saturate(1); }
+.project-window img.brand-upgrade-cover { aspect-ratio:auto; height:auto; object-fit:contain; filter:none; }
+.project-window:hover img.brand-upgrade-cover { transform:none; }
 .project-window-placeholder { display:grid; place-items:center; width:100%; aspect-ratio:1.45; background:#252525; color:#b8b6b1; }
 .project-window-placeholder span { font-size:11px; letter-spacing:.18em; }
 .placeholder-project-window:nth-child(3n+2) .project-window-placeholder { background:#aaa9a3; color:#171717; }
@@ -151,6 +153,17 @@ button,a { color:inherit; }
 .camel-new-project-grid img { display:block; width:100%; height:auto; }
 .camel-ai-video-cases { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; width:min(1180px,100%); margin:44px auto 0; align-items:start; }
 .camel-ai-video-cases video { display:block; width:100%; height:auto; background:#111; }
+.brand-upgrade-intro { max-width:850px; margin:30px 0 0; }
+.brand-upgrade-intro h2 { margin:0 0 14px; font-size:18px; font-weight:400; }
+.brand-upgrade-intro p { margin:0; color:#999; font-size:12px; line-height:1.9; }
+.brand-upgrade-columns { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px; margin:32px auto 0; width:min(1440px,100%); align-items:start; }
+.brand-upgrade-document { min-width:0; }
+.brand-upgrade-document h3 { display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px; margin:0 0 12px; color:#b8b6b1; font-size:11px; font-weight:400; }
+.brand-upgrade-document h3 span { color:#777; }
+.brand-upgrade-pages { display:flex; flex-direction:column; gap:6px; }
+.brand-upgrade-pages a { display:block; }
+.brand-upgrade-pages a:focus-visible { outline:2px solid #fff; outline-offset:2px; }
+.brand-upgrade-pages img { display:block; width:100%; height:auto; }
 .champion-guideline-columns { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; width:min(1440px,100%); margin:30px auto 0; align-items:start; }
 .champion-guideline-column { min-width:0; padding:0 14px; }
 .champion-guideline-column + .champion-guideline-column { border-left:1px solid #3a3a3a; }
